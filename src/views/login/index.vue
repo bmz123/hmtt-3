@@ -62,6 +62,17 @@ export default {
         // valid判断是否校验成功
         if (valid) {
           // 进行登录
+          this.$http.post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations', this.loginForm).then(res => {
+            // 登录成功
+            // res 是响应对象  res.data 是响应主体 将来会使用
+            // 直接跳转首页
+            this.$router.push('/')
+          }).catch(e => {
+            // 登录失败
+            // e 错误对象
+            // 提示：手机号或验证码错误
+            this.$message.error('手机号或验证码错误')
+          })
         }
       })
     }
